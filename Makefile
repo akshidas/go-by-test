@@ -18,6 +18,9 @@ arrays:
 structs:
 	@go test ./05_structs_methods_interfaces/ -v
 
+pointers:
+	@go test ./06_pointers_errors/ -v
+
 end:
 	@echo "End Test"
 
