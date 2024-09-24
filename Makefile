@@ -1,4 +1,4 @@
-all: start hello integers end
+all: start hello integers iteration end
 
 start:
 	@echo "Starting Test"
@@ -9,6 +9,8 @@ hello:
 integers:
 	@go test ./02_integers -v 
 
+iteration:
+	@go test ./03_iteration/ -v
 end:
 	@echo "End Test"
 
