@@ -1,11 +1,15 @@
+all: start hello integers end
+
+start:
+	@echo "Starting Test"
+
 hello:
-	@echo "Hello"
+	@go test ./01_hello -v 
 
-run:
-	@go run main.go 
+integers:
+	@go test ./02_integers -v 
 
-test:
-	@go test
+end:
+	@echo "End Test"
 
-build:
-	@go build
+
