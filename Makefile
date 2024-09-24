@@ -11,6 +11,10 @@ integers:
 
 iteration:
 	@go test ./03_iteration/ -v
+
+arrays:
+	@go test ./04_arrays_slices/ -v
+
 end:
 	@echo "End Test"
 
