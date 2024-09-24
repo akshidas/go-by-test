@@ -1,4 +1,4 @@
-all: start hello integers iteration end
+all: start hello integers iteration arrays end
 
 start:
 	@echo "Starting Test"
@@ -14,6 +14,9 @@ iteration:
 
 arrays:
 	@go test ./04_arrays_slices/ -v
+
+structs:
+	@go test ./05_structs_methods_interfaces/ -v
 
 end:
 	@echo "End Test"
