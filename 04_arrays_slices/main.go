@@ -8,5 +8,9 @@ func Sum(a []int) int {
 	}
 
 	return sum
+}
 
+func SumAll(numbersToSum ...[]int) []int {
+
+	return nil
 }
