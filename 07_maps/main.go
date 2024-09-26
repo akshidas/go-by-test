@@ -14,3 +14,17 @@ func (d Dictionary) Search(key string) (string, error) {
 
 	return "", ErrUnknownKey
 }
+
+func (d Dictionary) Add(key, value string) error {
+	_, err := d.Search(key)
+
+	switch err {
+	case ErrUnknownKey:
+		d[key] = value
+		return nil
+	case nil:
+		return errors.New("duplicate key")
+	default:
+		return err
+	}
+}
