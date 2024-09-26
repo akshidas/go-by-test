@@ -1,10 +1,17 @@
 package main
 
-import "errors"
-
 type Dictionary map[string]string
 
-var ErrUnknownKey = errors.New("unknown key")
+const (
+	ErrUnknownKey   = DictionaryError("could not find the word you were looking for")
+	ErrDuplicateKey = DictionaryError("could not add the key as duplicate exists")
+)
+
+type DictionaryError string
+
+func (e DictionaryError) Error() string {
+	return string(e)
+}
 
 func (d Dictionary) Search(key string) (string, error) {
 	value, ok := d[key]
@@ -23,7 +30,7 @@ func (d Dictionary) Add(key, value string) error {
 		d[key] = value
 		return nil
 	case nil:
-		return errors.New("duplicate key")
+		return ErrDuplicateKey
 	default:
 		return err
 	}

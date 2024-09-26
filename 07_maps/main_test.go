@@ -13,11 +13,9 @@ func TestSearch(t *testing.T) {
 
 	t.Run("searching unknown key", func(t *testing.T) {
 		_, got := d.Search("ttest")
-		want := ErrUnknownKey.Error()
-		if got == nil {
-			t.Fatalf("Wanted error %v but got nil", want)
-		}
-		assertString(t, want, got.Error())
+		want := ErrUnknownKey
+		assertError(t, want, got)
+		assertString(t, want.Error(), got.Error())
 	})
 }
 
@@ -26,6 +24,7 @@ func TestAdd(t *testing.T) {
 
 	t.Run("Add a new key", func(t *testing.T) {
 		got := d.Add("test", "this is test")
+
 		if got != nil {
 			t.Error("Wanted Error to be nil but got an error")
 		}
@@ -33,16 +32,19 @@ func TestAdd(t *testing.T) {
 
 	t.Run("Add a duplicate key", func(t *testing.T) {
 		got := d.Add("test", "this is test")
-		want := "duplicate key"
-		if got == nil {
-			t.Fatal("Wanted error to be duplicate key but got nil")
-		}
+		want := ErrDuplicateKey
 
-		if got.Error() != want {
-			t.Errorf("Wanted %v but got %v", want, got)
-		}
+		assertError(t, want, got)
+		assertString(t, want.Error(), got.Error())
 	})
 
+}
+
+func assertError(t testing.TB, want, got error) {
+	t.Helper()
+	if got == nil {
+		t.Fatalf("Want error to be %v but got %v", want, got)
+	}
 }
 
 func assertString(t testing.TB, want, got string) {
